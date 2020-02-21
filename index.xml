@@ -50,16 +50,6 @@ To go viennese cream to go, flavour, so mocha as, carajillo iced et a siphon fro
     </item>
     
     <item>
-      <title>My First Post</title>
-      <link>http://example.com/posts/my-first-post/</link>
-      <pubDate>Thu, 20 Feb 2020 14:27:36 -0800</pubDate>
-      
-      <guid>http://example.com/posts/my-first-post/</guid>
-      <description>Hello, my name is Yancen. This is my first post. I am writing this post to test the functionality of Hugo personal site framework.
-2/20/2020</description>
-    </item>
-    
-    <item>
       <title>Hello!</title>
       <link>http://example.com/home/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
