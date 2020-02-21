@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Hooray!</title>
-    <link>http://example.com/blog/</link>
+    <link>http://mia521.github.io/blog/</link>
     <description>Recent content in Blog on Hooray!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 20 Feb 2020 14:37:26 -0800</lastBuildDate>
     
-	<atom:link href="http://example.com/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://mia521.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hipster Ipsum</title>
-      <link>http://example.com/blog/intro/</link>
+      <link>http://mia521.github.io/blog/intro/</link>
       <pubDate>Thu, 20 Feb 2020 14:38:10 -0800</pubDate>
       
-      <guid>http://example.com/blog/intro/</guid>
+      <guid>http://mia521.github.io/blog/intro/</guid>
       <description>Occupy mlkshk kale chips woke, listicle locavore next level fingerstache glossier aesthetic man braid before they sold out kitsch prism. Cred copper mug freegan, flannel YOLO single-origin coffee skateboard artisan four loko church-key man bun. Synth literally gastropub, kombucha chillwave helvetica offal truffaut church-key freegan pop-up gentrify narwhal. Kombucha viral vexillologist green juice. Slow-carb hoodie mumblecore tumeric tattooed meditation, lo-fi fap cred affogato forage whatever austin. Shabby chic direct trade migas, brunch gochujang sriracha chambray fanny pack 8-bit mustache letterpress.</description>
     </item>
     
