@@ -1,61 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hooray!</title>
+    <title>Chengsheng Wu</title>
     <link>http://mia521.github.io/</link>
-    <description>Recent content on Hooray!</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 20 Feb 2020 14:38:10 -0800</lastBuildDate>
-    
-	<atom:link href="http://mia521.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
+      <atom:link href="http://mia521.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <description>Chengsheng Wu</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 28 Jun 2018 00:00:00 +0100</lastBuildDate>
+    <image>
+      <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
+      <title>Chengsheng Wu</title>
+      <link>http://mia521.github.io/</link>
+    </image>
     
     <item>
-      <title>Photography</title>
-      <link>http://mia521.github.io/projects/photography/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://mia521.github.io/projects/photography/</guid>
-      <description>Sometimes I take pictures This project is about the pictures I take. Sometimes, they are pictures of cats.</description>
+      <title>Privacy Policy</title>
+      <link>http://mia521.github.io/privacy/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
+      <guid>http://mia521.github.io/privacy/</guid>
+      <description>&lt;p&gt;Add your privacy policy here and set &lt;code&gt;draft: false&lt;/code&gt; to publish it. Otherwise, delete this file if you don&amp;rsquo;t need it.&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>Design</title>
-      <link>http://mia521.github.io/projects/design/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://mia521.github.io/projects/design/</guid>
-      <description>This theme was designed by Victoria Drake. Go on, explore! 💪
-If you want to use it for your website, check out the section at the bottom of the main page. 👍</description>
-    </item>
-    
-    <item>
-      <title>Writing</title>
-      <link>http://mia521.github.io/projects/writing/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://mia521.github.io/projects/writing/</guid>
-      <description>Aromatic aroma con panna, crema so coffee robust coffee barista, café au lait trifecta that strong blue mountain cortado aftertaste. Aroma extraction french press, skinny sweet, blue mountain cup roast barista, beans, extra cappuccino mug crema strong.
-To go viennese cream to go, flavour, so mocha as, carajillo iced et a siphon froth. Aged, eu, cup, brewed aroma kopi-luwak, coffee, id viennese french press brewed grounds acerbic froth. Decaffeinated acerbic, spoon beans seasonal, french press café au lait mazagran roast chicory, pumpkin spice galão as fair trade, dark irish cup ristretto half and half whipped shop.</description>
-    </item>
-    
-    <item>
-      <title>Hipster Ipsum</title>
-      <link>http://mia521.github.io/blog/intro/</link>
-      <pubDate>Thu, 20 Feb 2020 14:38:10 -0800</pubDate>
-      
-      <guid>http://mia521.github.io/blog/intro/</guid>
-      <description>Occupy mlkshk kale chips woke, listicle locavore next level fingerstache glossier aesthetic man braid before they sold out kitsch prism. Cred copper mug freegan, flannel YOLO single-origin coffee skateboard artisan four loko church-key man bun. Synth literally gastropub, kombucha chillwave helvetica offal truffaut church-key freegan pop-up gentrify narwhal. Kombucha viral vexillologist green juice. Slow-carb hoodie mumblecore tumeric tattooed meditation, lo-fi fap cred affogato forage whatever austin. Shabby chic direct trade migas, brunch gochujang sriracha chambray fanny pack 8-bit mustache letterpress.</description>
-    </item>
-    
-    <item>
-      <title>Hello!</title>
-      <link>http://mia521.github.io/home/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://mia521.github.io/home/</guid>
-      <description>I&amp;rsquo;m Chengsheng Wu</description>
+      <title>Terms</title>
+      <link>http://mia521.github.io/terms/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
+      <guid>http://mia521.github.io/terms/</guid>
+      <description>&lt;p&gt;Add your terms here and set &lt;code&gt;draft: false&lt;/code&gt; to publish it. Otherwise, delete this file if you don&amp;rsquo;t need it.&lt;/p&gt;
+</description>
     </item>
     
   </channel>
