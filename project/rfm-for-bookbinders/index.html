@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.7.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Chengsheng Wu">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Start by loading the bbb.rds data into Radiant using the Data &gt; Manage tab. Then press the report icon  icon on the bottom-left of the screen to add the relevant R-code to Report &gt; Rmd.
+## load the original tibble from data/bbb.rds bbb_file &lt;- tempfile() curl::curl_download( &quot;https://www.dropbox.com/s/i6athvk5m4t822m/bbb.rds?dl=1&quot;, destfile = bbb_file ) bbb &lt;- readr::read_rds(bbb_file)  Assessing recency Create a bar-plot using buyer as the Y-variable and last as the X-variable.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="http://mia521.github.io/project/rfm-for-bookbinders/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="rgb(251, 191, 183)">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cutive+Mono%7CLora:400,700%7CRoboto:400,700&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu90f118b7b4deb78d768ec653efe3e71d_186801_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu90f118b7b4deb78d768ec653efe3e71d_186801_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="http://mia521.github.io/project/rfm-for-bookbinders/">
+
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Chengsheng Wu">
+  <meta property="og:url" content="http://mia521.github.io/project/rfm-for-bookbinders/">
+  <meta property="og:title" content="RFM for Bookbinders | Chengsheng Wu">
+  <meta property="og:description" content="Start by loading the bbb.rds data into Radiant using the Data &gt; Manage tab. Then press the report icon  icon on the bottom-left of the screen to add the relevant R-code to Report &gt; Rmd.
+## load the original tibble from data/bbb.rds bbb_file &lt;- tempfile() curl::curl_download( &quot;https://www.dropbox.com/s/i6athvk5m4t822m/bbb.rds?dl=1&quot;, destfile = bbb_file ) bbb &lt;- readr::read_rds(bbb_file)  Assessing recency Create a bar-plot using buyer as the Y-variable and last as the X-variable."><meta property="og:image" content="img/map[gravatar:%!s(bool=false) shape:circle]">
+  <meta property="twitter:image" content="img/map[gravatar:%!s(bool=false) shape:circle]"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-03-13T22:55:13-07:00">
+    
+    <meta property="article:modified_time" content="2020-03-13T22:55:13-07:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://mia521.github.io/project/rfm-for-bookbinders/"
+  },
+  "headline": "RFM for Bookbinders",
+  
+  "datePublished": "2020-03-13T22:55:13-07:00",
+  "dateModified": "2020-03-13T22:55:13-07:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Chengsheng Wu"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Chengsheng Wu",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://mia521.github.io/images/icon_hu90f118b7b4deb78d768ec653efe3e71d_186801_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Start by loading the bbb.rds data into Radiant using the Data \u0026gt; Manage tab. Then press the report icon  icon on the bottom-left of the screen to add the relevant R-code to Report \u0026gt; Rmd.\n## load the original tibble from data/bbb.rds bbb_file \u0026lt;- tempfile() curl::curl_download( \u0026quot;https://www.dropbox.com/s/i6athvk5m4t822m/bbb.rds?dl=1\u0026quot;, destfile = bbb_file ) bbb \u0026lt;- readr::read_rds(bbb_file)  Assessing recency Create a bar-plot using buyer as the Y-variable and last as the X-variable."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>RFM for Bookbinders | Chengsheng Wu</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Chengsheng Wu</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Chengsheng Wu</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#skills"><span>Skills</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#experience"><span>Experience</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Project</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#accomplishments"><span>Accomplishment</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article article-project">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>RFM for Bookbinders</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Mar 13, 2020
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <hr>
+<p>Start by loading the <code>bbb.rds</code> data into Radiant using the <em>Data &gt;
+Manage</em> tab. Then press the report icon
+<i title='Report results' class='fa fa-edit'></i> icon on the
+bottom-left of the screen to add the relevant R-code to <em>Report &gt;
+Rmd</em>.</p>
+<pre><code>## load the original tibble from data/bbb.rds
+bbb_file &lt;- tempfile()
+curl::curl_download(
+  &quot;https://www.dropbox.com/s/i6athvk5m4t822m/bbb.rds?dl=1&quot;,
+  destfile = bbb_file
+)
+bbb &lt;- readr::read_rds(bbb_file)
+</code></pre>
+<h3 id="assessing-recency">Assessing recency</h3>
+<p>Create a bar-plot using <code>buyer</code> as the Y-variable and <code>last</code> as the
+X-variable.</p>
+<pre><code>visualize(
+  bbb,
+  xvar = &quot;last&quot;,
+  yvar = &quot;buyer&quot;,
+  type = &quot;bar&quot;,
+  labs = list(
+    y = &quot;Proportion of buyers = 'yes'&quot;, 
+    x = &quot;months since last purchase (last)&quot;
+  ),
+  custom = FALSE
+)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-2-1.png" alt=""></p>
+<p>Plot a histogram of the <code>last</code> variable (set plot type to
+“distribution”)</p>
+<pre><code>visualize(bbb, xvar = &quot;last&quot;, type = &quot;dist&quot;, custom = FALSE)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-3-1.png" alt=""></p>
+<p>Create the <code>recency</code> variable <code>rec_iq</code> using the following command in
+<em>Data &gt; Transform &gt; Create</em>:</p>
+<p><code>rec_iq = xtile(last, 5)</code></p>
+<pre><code>## create recency quintiles
+bbb &lt;- mutate(bbb, rec_iq = xtile(last, 5))
+</code></pre>
+<p>Is recency predictive of purchase? Are the best customers in quintile 1?
+The graph below shows this is indeed the case.</p>
+<pre><code>visualize(
+  bbb,
+  xvar = &quot;rec_iq&quot;,
+  yvar = &quot;buyer&quot;,
+  type = &quot;bar&quot;,
+  labs = list(
+    y = &quot;Proportion of buyers = 'yes'&quot;, 
+    x = &quot;Recency quintiles (rec_iq)&quot;
+  ),
+  custom = FALSE
+)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-5-1.png" alt=""></p>
+<h3 id="assessing-frequency">Assessing frequency</h3>
+<p>The plot below shows that purchase probability is NOT highest in the 1st
+quantile for frequency (<code>purch</code>).</p>
+<pre><code>visualize(
+  bbb,
+  xvar = &quot;purch&quot;,
+  yvar = &quot;buyer&quot;,
+  type = &quot;bar&quot;,
+  labs = list(
+    y = &quot;Proportion of buyers = 'yes'&quot;,
+    x = &quot;Purchase frequency (purch)&quot;
+  ),
+  custom = FALSE
+) 
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-6-1.png" alt=""></p>
+<p>This means we need to <em>flip</em> the bin numbers so the highest purchase
+probability will bin in the 1st bin (quantile). The easiest way to do
+this is to add <code>rev = TRUE</code> in the call to <code>xtile</code>.</p>
+<p><code>freq_iq = xtile(purch, 5, rev = TRUE)</code></p>
+<p>Alternatively, you could use:</p>
+<p><code>freq_iq = 6L - xtile(purch, 5)</code></p>
+<pre><code>## create frequency quintiles
+bbb &lt;- mutate(bbb, freq_iq = xtile(purch, 5, rev = TRUE))
+</code></pre>
+<p>Is frequency predictive of purchase? Are the best customers in quintile
+1? The graph below shows this is now indeed the case.</p>
+<pre><code>visualize(
+  bbb,
+  xvar = &quot;freq_iq&quot;,
+  yvar = &quot;buyer&quot;,
+  type = &quot;bar&quot;,
+  labs = list(
+    y = &quot;Proportion of buyers = 'yes'&quot;, 
+    x = &quot;Frequency quintiles (freq_iq)&quot;
+  ),
+  custom = FALSE
+)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-8-1.png" alt=""></p>
+<p>Why are there only 4 values? Looking at the histogram below we see that
+the distribution of <code>purch</code> is heavily skewed (to the right). This makes
+it difficult for the binning algorithm to create 5 <em>bins</em> of similar
+size</p>
+<pre><code>visualize(bbb, xvar = &quot;purch&quot;, color = &quot;freq_iq&quot;)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-9-1.png" alt=""></p>
+<h3 id="assessing-monetary-value">Assessing monetary value</h3>
+<p>The plot shows that purchase probability will NOT be highest in the 1st
+monetary quantile (<code>total</code>)</p>
+<pre><code>visualize(
+  bbb,
+  xvar = &quot;total&quot;,
+  yvar = &quot;buyer&quot;,
+  type = &quot;bar&quot;,
+  labs = list(
+    y = &quot;Proportion of buyers = 'yes'&quot;, 
+    x = &quot;Monetary value (total)&quot;
+  ), 
+  custom = TRUE
+) + 
+  theme(
+    axis.ticks.x = element_blank(), 
+    axis.text.x = element_blank()
+  )
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-10-1.png" alt=""></p>
+<p>Plot a histogram of the <code>total</code> variable</p>
+<pre><code>visualize(bbb, xvar = &quot;total&quot;, type = &quot;dist&quot;, custom = FALSE)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-11-1.png" alt=""></p>
+<p>Just like we did for <code>frequency</code>, we have to <em>flip</em> the bins so the
+highest purchase probability is in the 1st quantile. The easiest way to
+do this is to add <code>rev = TRUE</code> in the call to <code>xtile</code>.</p>
+<p><code>mon_iq = xtile(total, 5, rev = TRUE)</code></p>
+<pre><code>## create monetary quintiles
+bbb &lt;- mutate(bbb, mon_iq = xtile(total, 5, rev = TRUE))
+</code></pre>
+<p>Is monetary predictive of purchase? Are the best customers in quintile
+1? The graph below shows this is now indeed the case.</p>
+<pre><code>visualize(
+  bbb,
+  xvar = &quot;mon_iq&quot;,
+  yvar = &quot;buyer&quot;,
+  type = &quot;bar&quot;,
+  labs = list(
+    y = &quot;Proportion of buyers = 'yes'&quot;, 
+    x = &quot;Monetary value quantiles (mon_iq)&quot;
+  ),
+  custom = FALSE
+)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-13-1.png" alt=""></p>
+<h2 id="correlation-between-rfm-variables">Correlation between RFM variables</h2>
+<p>What is the correlation between <code>last</code>, <code>total</code>, and <code>purch</code>?</p>
+<pre><code>result &lt;- correlation(bbb, vars = c(&quot;last&quot;, &quot;total&quot;, &quot;purch&quot;))
+summary(result)
+
+Correlation
+Data        : bbb 
+Method      : Pearson 
+Variables   : last, total, purch 
+Null hyp.   : variables x and y are not correlated
+Alt. hyp.   : variables x and y are correlated
+
+Correlation matrix:
+      last  total
+total -0.00      
+purch  0.01  0.52
+
+p.values:
+      last total
+total 0.67      
+purch 0.18 0.00 
+
+plot(result, n = 1000)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-14-1.png" alt=""></p>
+<p>Create a new variable that captures the average amount spent per
+purchase (<code>avg_total</code>).</p>
+<pre><code>## calculate average spend
+bbb &lt;- mutate(bbb, avg_total = total / purch)
+
+visualize(
+  bbb,
+  xvar = &quot;purch&quot;,
+  yvar = &quot;avg_total&quot;,
+  type = &quot;bar&quot;,
+  custom = FALSE
+)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-16-1.png" alt=""></p>
+<p>What is the correlation between <code>purch</code> and <code>avg_total</code>?</p>
+<pre><code>result &lt;- correlation(
+  bbb,
+  vars = c(&quot;last&quot;, &quot;total&quot;, &quot;purch&quot;, &quot;avg_total&quot;)
+)
+summary(result)
+
+Correlation
+Data        : bbb 
+Method      : Pearson 
+Variables   : last, total, purch, avg_total 
+Null hyp.   : variables x and y are not correlated
+Alt. hyp.   : variables x and y are correlated
+
+Correlation matrix:
+          last  total purch
+total     -0.00            
+purch      0.01  0.52      
+avg_total -0.01  0.21 -0.57
+
+p.values:
+          last total purch
+total     0.67            
+purch     0.18 0.00       
+avg_total 0.05 0.00  0.00 
+
+plot(result, n = 1000)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-17-1.png" alt=""></p>
+<h2 id="generate-rfm-index">Generate RFM index</h2>
+<p>Use <em>Data &gt; Transform &gt; Create</em> to generate the RFM index by
+<em>pasting</em> <code>rec_iq</code>, <code>freq_iq</code>, and <code>mon_iq</code> together.</p>
+<p><code>rfm_iq = paste0(rec_iq, freq_iq, mon_iq)</code></p>
+<pre><code>## create new variable(s)
+bbb &lt;- mutate(bbb, rfm_iq = paste0(rec_iq, freq_iq, mon_iq))
+
+visualize(
+  bbb,
+  xvar = &quot;rfm_iq&quot;,
+  yvar = &quot;buyer&quot;,
+  type = &quot;bar&quot;,
+  labs = list(
+    y = &quot;Proportion of buyer = 'yes'&quot;, 
+    x = &quot;Independent RFM index (rfm_iq)&quot;
+  ),
+  custom = TRUE
+) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-19-1.png" alt=""></p>
+<h2 id="generate-sequential-quintiles">Generate sequential quintiles</h2>
+<p>There is no need to do anything with <code>recency</code> for a sequential
+quintiles approach because <code>rec_iq</code> is the same as <code>rec_sq</code>. However, to
+calculate <code>freq_sq</code> we first need to group the data by <code>rec_iq</code> before
+applying the <code>xtile</code> function. Subsequently, we need to group the data
+by <code>rec_iq</code> and <code>freq_sq</code> before applying the <code>xtile</code> function to
+calculate <code>mon_sq</code></p>
+<pre><code>## calculate sequential frequency quintiles
+bbb &lt;- group_by(bbb, rec_iq) %&gt;%
+  mutate(freq_sq = xtile(purch, 5, rev = TRUE)) %&gt;%
+  ungroup()
+
+## calculate sequential monetary quintiles
+bbb &lt;- group_by(bbb, rec_iq, freq_sq) %&gt;%
+  mutate(mon_sq = xtile(total, 5, rev = TRUE)) %&gt;%
+  ungroup()
+
+visualize(
+  bbb,
+  xvar = &quot;freq_sq&quot;,
+  yvar = &quot;buyer&quot;,
+  type = &quot;bar&quot;,
+  labs = list(
+    y = &quot;Proportion of buyers = 'yes'&quot;, 
+    x = &quot;Frequency quintiles (freq_sq)&quot;
+  ),
+  custom = FALSE
+)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-21-1.png" alt=""></p>
+<pre><code>visualize(
+  bbb,
+  xvar = &quot;mon_sq&quot;,
+  yvar = &quot;buyer&quot;,
+  type = &quot;bar&quot;,
+  labs = list(
+    y = &quot;Proportion of buyers = 'yes'&quot;, 
+    x = &quot;Monetary value quintiles (mon_sq)&quot;
+  ),
+  custom = FALSE
+)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-22-1.png" alt=""></p>
+<h2 id="generate-sequential-rfm-index">Generate Sequential RFM index</h2>
+<p>Use <em>Data &gt; Transform &gt; Create</em> to generate the RFM index by
+<em>pasting</em> <code>rec_iq</code>, <code>freq_sq</code>, and <code>mon_sq</code> together.</p>
+<p><code>rfm_sq = paste0(rec_iq, freq_sq, mon_sq)</code></p>
+<pre><code>## create new variable(s)
+bbb &lt;- mutate(bbb, rfm_sq = paste0(rec_iq, freq_sq, mon_sq))
+
+visualize(
+  bbb,
+  xvar = &quot;rfm_sq&quot;,
+  yvar = &quot;buyer&quot;,
+  type = &quot;bar&quot;,
+  labs = list(
+    y = &quot;Proportion of buyer = 'yes'&quot;, 
+    x = &quot;Sequential RFM index (rfm_sq)&quot;
+  ), 
+  custom = TRUE
+) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-24-1.png" alt=""></p>
+<h2 id="calculate-performance-metrics-without-targeting">Calculate performance metrics without targeting</h2>
+<h2 id="response-rate-without-rfm">Response rate without RFM</h2>
+<p>We can use <em>Data &gt; Explore</em> to generate summary statistics for the
+<code>buyer</code> variable in the sample</p>
+<pre><code>result &lt;- explore(
+  bbb,
+  vars = &quot;buyer&quot;,
+  fun = c(&quot;n_obs&quot;, &quot;mean&quot;)
+)
+summary(result, dec = 4)
+
+Explore
+Data        : bbb 
+Functions   : n_obs, mean 
+Top         : Function 
+
+ variable  n_obs   mean
+    buyer 50,000 0.0904
+</code></pre>
+<p>Some basic R-code is needed to to calculate performance metrics for BBB
+when no targeting is used. We are now using R as a calculator.</p>
+<pre><code>perc_mail &lt;- 1
+nr_mail &lt;- 500000 * perc_mail
+rep_rate &lt;- mean(bbb$buyer == &quot;yes&quot;)
+nr_resp &lt;- nr_mail * rep_rate
+mail_cost &lt;- .5 * nr_mail
+profit_nt &lt;- (18 - 9 - 3) * nr_resp - mail_cost
+ROME_nt &lt;- profit_nt / mail_cost
+</code></pre>
+<p>Without targeting BBB would mail all 500,000 remaining customers
+(100.00%). The response rate is predicted to be 9.04% or 45,220 buyers.
+The expected profit is $21,320. The mailing cost is estimated to be
+$250,000 with a ROME of 8.53%</p>
+<h2 id="calculate-performance-metrics-using-independent-rfm">Calculate performance metrics using independent RFM</h2>
+<h2 id="break-even-aggr">Break-even (aggr)</h2>
+<p>We can calcule the break-even response rate as follows:</p>
+<p><code>.5 / (18 - 9 - 3) = 0.0833333</code></p>
+<p>The breakeven value is 8.3%. All cells above the breakeven line in the
+plot below should be mailed.</p>
+<pre><code>visualize(
+  bbb,
+  xvar = &quot;rfm_iq&quot;,
+  yvar = &quot;buyer&quot;,
+  type = &quot;bar&quot;,
+  labs = list(
+    y = &quot;Proportion of buyer = 'yes'&quot;, 
+    x = &quot;Independent RFM index (rfm_iq)&quot;
+  ),
+  custom = TRUE
+) +
+  geom_hline(yintercept = 0.083) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-27-1.png" alt=""></p>
+<h2 id="response-rate-using-independent-quintiles">Response rate using independent quintiles</h2>
+<p>Create the <code>mailto_iq</code> variable for independent RFM making sure to
+select the <code>rfm_iq</code> variable so the estimates are generated for each
+cell.</p>
+<p><code>mailto_iq = mean(buyer == &quot;yes&quot;) &gt; .083</code></p>
+<pre><code>## mail TRUE or FALSE
+bbb &lt;- group_by(bbb, rfm_iq) %&gt;%
+  mutate(mailto_iq = mean(buyer == &quot;yes&quot;) &gt; breakeven) %&gt;%
+  ungroup()
+
+## also calculate response rate per group as an illustration
+bbb &lt;- group_by(bbb, rfm_iq) %&gt;%
+  mutate(rfm_iq_resp = mean(buyer == &quot;yes&quot;)) %&gt;%
+  ungroup()
+
+result &lt;- pivotr(
+  bbb,
+  cvars = &quot;mailto_iq&quot;,
+  fun = &quot;n_obs&quot;,
+  normalize = &quot;total&quot;
+)
+summary(result, dec = 2, perc = TRUE)
+
+Pivot table
+Data        : bbb 
+Categorical : mailto_iq 
+Normalize by: total 
+
+ mailto_iq   n_obs
+     FALSE  53.46%
+      TRUE  46.54%
+     Total 100.00%
+
+result &lt;- explore(
+  bbb,
+  vars = &quot;buyer&quot;,
+  byvar = &quot;mailto_iq&quot;,
+  fun = c(&quot;n_obs&quot;, &quot;mean&quot;)
+)
+summary(result, dec = 4)
+
+Explore
+Data        : bbb 
+Grouped by  : mailto_iq 
+Functions   : n_obs, mean 
+Top         : Function 
+
+ mailto_iq variable  n_obs   mean
+     FALSE    buyer 26,732 0.0468
+      TRUE    buyer 23,268 0.1405
+</code></pre>
+<h2 id="calculate-profits-and-rome-for-independent-rfm">Calculate profits and ROME for Independent RFM</h2>
+<p>Some basic R-code is again needed to to calculate performance metrics
+for BBB when targeting using independent RFM. The only difference with
+the calculations above is that we now also have calculate the percentage
+of customers that will be mailed rather than setting equal to 100%.</p>
+<pre><code>perc_mail &lt;- mean(bbb$mailto_iq)
+nr_mail &lt;- 500000 * perc_mail
+dat &lt;- filter(bbb, mailto_iq == TRUE)
+rep_rate &lt;- mean(dat$buyer == &quot;yes&quot;)
+nr_resp &lt;- nr_mail * rep_rate
+mail_cost &lt;- .5 * nr_mail
+profit_iq &lt;- (18 - 9 - 3) * nr_resp - mail_cost
+ROME_iq &lt;- profit_iq / mail_cost
+</code></pre>
+<p>Based on independent RFM the number of customers BBB should mail is
+232,680 (46.54%). The response rate for the selected customers is
+predicted to be 14.05% or 32,700 buyers. The expected profit is $79,860.
+The mailing cost is estimated to be $116,340 with a ROME of 68.64%</p>
+<h2 id="response-rate-using-sequential-quintiles">Response rate using sequential quintiles</h2>
+<p>Create the <code>mailto_sq</code> variable for sequential RFM making sure to select
+the <code>rfm_sq</code> variable so the estimates are generated for each cell.</p>
+<p><code>mailto_sq = mean(buyer == &quot;yes&quot;) &gt; .083</code></p>
+<pre><code>## mail TRUE or FALSE
+bbb &lt;- group_by(bbb, rfm_sq) %&gt;%
+  mutate(mailto_sq = mean(buyer == &quot;yes&quot;) &gt; breakeven) %&gt;%
+  ungroup()
+
+## also calculate response rate per group as an illustration
+bbb &lt;- group_by(bbb, rfm_sq) %&gt;%
+  mutate(rfm_sq_resp = mean(buyer == &quot;yes&quot;)) %&gt;%
+  ungroup()
+
+result &lt;- pivotr(bbb, cvars = &quot;mailto_sq&quot;, fun = &quot;n_obs&quot;, normalize = &quot;total&quot;)
+summary(result, dec = 2, perc = TRUE)
+
+Pivot table
+Data        : bbb 
+Categorical : mailto_sq 
+Normalize by: total 
+
+ mailto_sq   n_obs
+     FALSE  52.59%
+      TRUE  47.41%
+     Total 100.00%
+
+result &lt;- explore(
+  bbb,
+  vars = &quot;buyer&quot;,
+  byvar = &quot;mailto_sq&quot;,
+  fun = c(&quot;n_obs&quot;, &quot;mean&quot;)
+)
+summary(result, dec = 4)
+
+Explore
+Data        : bbb 
+Grouped by  : mailto_sq 
+Functions   : n_obs, mean 
+Top         : Function 
+
+ mailto_sq variable  n_obs   mean
+     FALSE    buyer 26,297 0.0460
+      TRUE    buyer 23,703 0.1397
+</code></pre>
+<h2 id="calculate-profits-and-rome-using-sequential-rfm">Calculate profits and ROME using Sequential RFM</h2>
+<pre><code>perc_mail &lt;- mean(bbb$mailto_sq)
+nr_mail &lt;- 500000 * perc_mail
+dat &lt;- filter(bbb, mailto_sq == TRUE)
+rep_rate &lt;- mean(dat$buyer == &quot;yes&quot;)
+nr_resp &lt;- nr_mail * rep_rate
+mail_cost &lt;- .5 * nr_mail
+profit_sq &lt;- (18 - 9 - 3) * nr_resp - mail_cost
+ROME_sq &lt;- profit_sq / mail_cost
+</code></pre>
+<p>Based on sequential RFM the number of customers BBB should mail is
+237,030 (47.41%). The response rate for the selected customers is
+predicted to be 13.97% or 33,120 buyers. The expected profit is $80,205.
+The mailing cost is estimated to be $118,515 with a ROME of 67.67%.</p>
+<p>Compare this to the main results from independent RFM. The expected
+profit is $79,860. The mailing cost is estimated to be $118,515 with a
+ROME of 68.64%</p>
+<h2 id="extra-intuitive-groupings">Extra: Intuitive groupings</h2>
+<p>Generate the RFM variables based on intuitive groupings.</p>
+<pre><code>## create recency groups using case_when
+bbb &lt;- mutate(
+  bbb,
+  rec_ig = case_when(
+    last &lt;= 6 ~ 1, 
+    last &gt; 6 &amp; last &lt;= 12 ~ 2,
+    last &gt; 12 &amp; last &lt;= 18 ~ 3,
+    last &gt; 18 &amp; last &lt;= 24 ~ 4, 
+    TRUE ~ 5
+  )
+)
+
+## create frequency groups
+bbb &lt;- mutate(bbb, freq_ig = ifelse(purch == 1, 2, 1))
+
+## create monetary groups
+bbb &lt;- mutate(bbb, mon_ig = ifelse(total &lt; median(total), 2, 1))
+
+## change all _iq variables to type {integer} using _Data &gt; Transform &gt; Change type_
+bbb &lt;- mutate_at(
+  bbb,
+  .vars = vars(rec_ig, freq_ig, mon_ig),
+  .funs = as_integer
+)
+
+## create new variable(s)
+bbb &lt;- mutate(bbb, rfm_ig = paste0(rec_ig, freq_ig, mon_ig))
+</code></pre>
+<p>Create the <code>mailto_ig</code> variable for RFM based on intuitive groupings and
+make sure to select the <code>rfm_ig</code> variable so the estimates are generated
+for each cell.</p>
+<pre><code>## mail TRUE or FALSE
+bbb &lt;- group_by(bbb, rfm_ig) %&gt;%
+  mutate(mailto_ig = mean(buyer == &quot;yes&quot;) &gt; breakeven) %&gt;%
+  ungroup()
+
+perc_mail &lt;- mean(bbb$mailto_ig)
+nr_mail &lt;- 500000 * perc_mail
+dat &lt;- filter(bbb, mailto_ig == TRUE)
+rep_rate &lt;- mean(dat$buyer == &quot;yes&quot;)
+nr_resp &lt;- nr_mail * rep_rate
+mail_cost &lt;- .5 * nr_mail
+profit_ig &lt;- (18 - 9 - 3) * nr_resp - mail_cost
+ROME_ig &lt;- profit_ig / mail_cost
+</code></pre>
+<p>Based on intuitively grouped RFM the number of customers BBB should mail
+is 276,660 (55.33%). The response rate for the selected customers is
+predicted to be 12.69% or 35,100 buyers. The expected profit is $72,270.
+The mailing cost is estimated to be $138,330 with a ROME of 52.24%.</p>
+<h2 id="extra-graphing-profit-and-rome-across-methods">Extra: Graphing Profit and ROME across methods</h2>
+<pre><code>## make a tibble (data.frame) with results
+dat &lt;- tibble::tibble(
+  name = c(&quot;No targeting&quot;, &quot;Indep. RFM&quot;, &quot;Sequen. RFM&quot;, &quot;Intuit. RFM&quot;),
+  Profit = c(profit_nt, profit_iq, profit_sq, profit_ig),
+  ROME = c(ROME_nt, ROME_iq, ROME_sq, ROME_ig)
+) %&gt;%
+  mutate(name = factor(name, levels = name))
+
+## plot campaign profit
+visualize(
+  dat, 
+  xvar = &quot;name&quot;, 
+  yvar = &quot;Profit&quot;, 
+  type = &quot;bar&quot;, 
+  labs = list(title = &quot;Campaign profit&quot;, x = &quot;&quot;),
+  custom = TRUE
+) +
+  geom_text(aes(label = format_nr(Profit, dec = 0)), vjust = 2)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-40-1.png" alt=""></p>
+<pre><code>## plot ROME
+visualize(
+  dat, 
+  xvar = &quot;name&quot;, 
+  yvar = &quot;ROME&quot;, 
+  type = &quot;bar&quot;, 
+  labs = list(title = &quot;Return on Marketing Expenditures (ROME)&quot;, x = &quot;&quot;),
+  custom = TRUE
+) +
+  geom_text(aes(label = format_nr(ROME, dec = 2)), vjust = 2)
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-41-1.png" alt=""></p>
+<h2 id="extra-refining-the-break-even-rule-with-prediction-precision-based-on-independent-quintiles">Extra: Refining the break even rule with prediction precision based on Independent quintiles</h2>
+<p>We want to establish that the estimated response rates per RFM cell are
+significantly larger than the break-even response rate. Lets start with
+a test of the proportion of buyers in RFM group 111.</p>
+<pre><code>result &lt;- single_prop(
+  bbb,
+  var = &quot;buyer&quot;,
+  lev = &quot;yes&quot;,
+  comp_value = 0.083,
+  alternative = &quot;greater&quot;,
+  data_filter = &quot;rfm_iq == '111'&quot;
+)
+summary(result)
+
+Single proportion test (binomial exact)
+Data      : bbb 
+Filter    : rfm_iq == '111' 
+Variable  : buyer 
+Level     : yes in buyer 
+Confidence: 0.95 
+Null hyp. : the proportion of yes in buyer = 0.083 
+Alt. hyp. : the proportion of yes in buyer &gt; 0.083 
+
+     p  ns     n n_missing    sd    se    me
+ 0.225 264 1,171         0 0.418 0.012 0.024
+
+  diff  ns p.value    5%  100%    
+ 0.142 264  &lt; .001 0.205 1.000 ***
+
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+</code></pre>
+<p>The results show that we can reject <em>H</em><sub>0</sub> in favor of the
+alternative hypothesis that the proportion of buyers in this group in
+the population will be above the break-even response rate.</p>
+<p>Recall that the “worst” cell we would still target was index 253 for
+<code>rfm_iq</code>. This group had a sample response rate of 0.085. The test below
+shows that we cannot reject <em>H</em><sub>0</sub> for this group.</p>
+<pre><code>result &lt;- single_prop(
+  bbb,
+  var = &quot;buyer&quot;,
+  lev = &quot;yes&quot;,
+  comp_value = 0.083,
+  alternative = &quot;greater&quot;,
+  data_filter = &quot;rfm_iq == '253'&quot;
+)
+summary(result)
+
+Single proportion test (binomial exact)
+Data      : bbb 
+Filter    : rfm_iq == '253' 
+Variable  : buyer 
+Level     : yes in buyer 
+Confidence: 0.95 
+Null hyp. : the proportion of yes in buyer = 0.083 
+Alt. hyp. : the proportion of yes in buyer &gt; 0.083 
+
+     p ns   n n_missing    sd    se    me
+ 0.085 52 609         0 0.279 0.011 0.022
+
+  diff ns p.value    5%  100%  
+ 0.002 52   0.436 0.067 1.000  
+
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+</code></pre>
+<p>We can generate the required inputs to calculate the lower-bound on the
+response rate for each cell using <em>Data &gt; Explore</em> as follows:</p>
+<pre><code>result &lt;- explore(
+  bbb,
+  vars = &quot;buyer&quot;,
+  byvar = &quot;rfm_iq&quot;,
+  fun = c(&quot;n_obs&quot;, &quot;prop&quot;, &quot;seprop&quot;),
+  nr = 95
+)
+dtab(result, dec = 4) %&gt;% render()
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-44-1.png" alt=""></p>
+<pre><code>bbb_lbiq &lt;- result$tab
+register(&quot;bbb_lbiq&quot;)
+</code></pre>
+<p>Then we can use <em>Data &gt; Transform</em> to calculate the lower-bound on
+the response rate</p>
+<p>Put simply, the standard error of the sample mean is an estimate of how
+far the sample mean is likely to be from the population mean, whereas
+the standard deviation of the sample is the degree to which individuals
+within the sample differ from the sample mean.</p>
+<pre><code>## create lower-bound
+bbb_lbiq &lt;- mutate(bbb_lbiq, prop_lb = prop - 1.64 * seprop)
+</code></pre>
+<p>The figure below shows instances where the lower-bound of the confidence
+interval around the response rate for a cell is below the break-even
+cut-off point although the sample response rate is above the cut-off
+point.</p>
+<pre><code>visualize(
+  bbb_lbiq,
+  xvar = &quot;rfm_iq&quot;,
+  yvar = c(&quot;prop&quot;, &quot;prop_lb&quot;),
+  comby = TRUE,
+  type = &quot;line&quot;,
+  labs = list(
+    y = &quot;Proportion of buyer = 'yes'&quot;,
+    x = &quot;Independent RFM index (rfm_iq)&quot;,
+    color = &quot;&quot;
+  ),
+  custom = TRUE
+) +
+  geom_hline(yintercept = 0.083) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-46-1.png" alt=""></p>
+<p>Create the <code>mailto_lbiq</code> variable for independent RFM <strong>adjusting for
+estimation accuracy</strong> making sure to select the <code>rfm_iq</code> variable so the
+estimates are generated for each cell.</p>
+<pre><code>mailto_lbiq = (mean(buyer == &quot;yes&quot;) - 1.64 * seprop(buyer == &quot;yes&quot;)) &gt; .083
+
+## mail TRUE or FALSE
+bbb &lt;- group_by(bbb, rfm_iq) %&gt;%
+  mutate(mailto_lbiq = (mean(buyer == &quot;yes&quot;) - 1.64 * seprop(buyer == &quot;yes&quot;)) &gt; 0.083) %&gt;%
+  ungroup()
+</code></pre>
+<p>The rest of the calculations are the same as before.</p>
+<pre><code>perc_mail &lt;- mean(bbb$mailto_lbiq)
+nr_mail &lt;- 500000 * perc_mail
+dat &lt;- filter(bbb, mailto_lbiq == TRUE)
+rep_rate &lt;- mean(dat$buyer == &quot;yes&quot;)
+nr_resp &lt;- nr_mail * rep_rate
+mail_cost &lt;- .5 * nr_mail
+profit_lbiq &lt;- (18 - 9 - 3) * nr_resp - mail_cost
+ROME_lbiq &lt;- profit_lbiq / mail_cost
+</code></pre>
+<p>Based on independent RFM, after adjustment for prediction precision, the
+number of customers BBB should mail is 183,940 (36.79%). The response
+rate for the selected customers is predicted to be 15.30% or 28,150
+buyers. The expected profit is $76,930. The mailing cost is estimated to
+be $91,970 with a ROME of 83.65%.</p>
+<h2 id="extra-refining-the-break-even-rule-with-prediction-precision-based-on-sequential-quintiles">Extra: Refining the break even rule with prediction precision based on Sequential quintiles</h2>
+<p>We want to establish that the estimated response rates per RFM cell are
+significantly larger than the break-even response rate. Lets start with
+a test of the proportion of buyers in RFM group 111.</p>
+<pre><code>result &lt;- single_prop(
+  bbb,
+  var = &quot;buyer&quot;,
+  lev = &quot;yes&quot;,
+  comp_value = 0.083,
+  alternative = &quot;greater&quot;,
+  data_filter = &quot;rfm_sq == '111'&quot;
+)
+summary(result)
+
+Single proportion test (binomial exact)
+Data      : bbb 
+Filter    : rfm_sq == '111' 
+Variable  : buyer 
+Level     : yes in buyer 
+Confidence: 0.95 
+Null hyp. : the proportion of yes in buyer = 0.083 
+Alt. hyp. : the proportion of yes in buyer &gt; 0.083 
+
+     p ns   n n_missing    sd    se    me
+ 0.245 88 359         0 0.430 0.023 0.044
+
+  diff ns p.value    5%  100%    
+ 0.162 88  &lt; .001 0.208 1.000 ***
+
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+</code></pre>
+<p>The results show that we can reject <em>H</em><sub>0</sub> in favor of the
+alternative hypothesis that the proportion of buyers in this group in
+the population will be above the break-even response rate.</p>
+<p>Recall that the “worst” groups we would still send to was index 323 for
+<code>rfm_sq</code>. This group had a sample response rate of 0.085. The test below
+shows that we cannot reject <em>H</em><sub>0</sub> for this group.</p>
+<pre><code>result &lt;- single_prop(
+  bbb,
+  var = &quot;buyer&quot;,
+  lev = &quot;yes&quot;,
+  comp_value = 0.083,
+  alternative = &quot;greater&quot;,
+  data_filter = &quot;rfm_sq == '323'&quot;
+)
+summary(result)
+
+Single proportion test (binomial exact)
+Data      : bbb 
+Filter    : rfm_sq == '323' 
+Variable  : buyer 
+Level     : yes in buyer 
+Confidence: 0.95 
+Null hyp. : the proportion of yes in buyer = 0.083 
+Alt. hyp. : the proportion of yes in buyer &gt; 0.083 
+
+     p ns   n n_missing    sd    se    me
+ 0.085 42 493         0 0.279 0.013 0.025
+
+  diff ns p.value    5%  100%  
+ 0.002 42   0.453 0.065 1.000  
+
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+</code></pre>
+<p>We can generate the required inputs to calculate the lower-bound on the
+response rate for each cell using <em>Data &gt; Explore</em> as follows:</p>
+<pre><code>result &lt;- explore(
+  bbb,
+  vars = &quot;buyer&quot;,
+  byvar = &quot;rfm_sq&quot;,
+  fun = c(&quot;n_obs&quot;, &quot;prop&quot;, &quot;seprop&quot;),
+  nr = 95
+)
+dtab(result, dec = 4) %&gt;% render()
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-51-1.png" alt=""></p>
+<pre><code>bbb_lbsq &lt;- result$tab
+register(&quot;bbb_lbsq&quot;)
+</code></pre>
+<p>Then we can use <em>Data &gt; Transform</em> to calculate the lower-bound on
+the response rate</p>
+<pre><code>## create lower-bound
+bbb_lbsq &lt;- mutate(bbb_lbsq, prop_lb = prop - 1.64 * seprop)
+</code></pre>
+<p>The figure below shows instances where the lower-bound of the confidence
+interval around the response rate for a cell is below the break-even
+cut-off point although the sample response rate is above the cut-off
+point.</p>
+<pre><code>visualize(
+  bbb_lbsq,
+  xvar = &quot;rfm_sq&quot;,
+  yvar = c(&quot;prop&quot;, &quot;prop_lb&quot;),
+  comby = TRUE,
+  type = &quot;line&quot;,
+  labs = list(
+    y = &quot;Proportion of buyer = 'yes'&quot;,
+    x = &quot;Sequential RFM index (rfm_sq)&quot;,
+    color = &quot;&quot;
+  ),
+  custom = TRUE
+) +
+  geom_hline(yintercept = 0.083) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+</code></pre>
+<p><img src="test_files/figure-markdown_strict/unnamed-chunk-53-1.png" alt=""></p>
+<p>Create the <code>mailto_lbsq</code> variable for sequential RFM <strong>adjusting for
+estimation accuracy</strong> making sure to select the <code>rfm_sq</code> variable so the
+estimates are generated for each cell.</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=http://mia521.github.io/project/rfm-for-bookbinders/&amp;text=RFM%20for%20Bookbinders" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=http://mia521.github.io/project/rfm-for-bookbinders/&amp;t=RFM%20for%20Bookbinders" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=RFM%20for%20Bookbinders&amp;body=http://mia521.github.io/project/rfm-for-bookbinders/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=http://mia521.github.io/project/rfm-for-bookbinders/&amp;title=RFM%20for%20Bookbinders" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=RFM%20for%20Bookbinders%20http://mia521.github.io/project/rfm-for-bookbinders/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=http://mia521.github.io/project/rfm-for-bookbinders/&amp;title=RFM%20for%20Bookbinders" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu04c3e26bb7572697996e4286063ef1ad_3010282_270x270_fill_q90_lanczos_center.jpeg" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="http://mia521.github.io">Chengsheng Wu</a></h5>
+      <h6 class="card-subtitle">M.S. in Business Analytics</h6>
+      <p class="card-text">My research interests include distributed robotics, mobile computing and programmable matter.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:c7wu@ucsd.edu" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/chengsheng-mia-wu/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/mia521" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+    <div class="project-related-pages content-widget-hr">
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+    </div>
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.a8d7005002cb4a052fd6d721e83df9ba.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -2,8 +2,8 @@
   "name": "Chengsheng Wu",
   "short_name": "Chengsheng Wu",
   "lang": "en-us",
-  "theme_color": "hsl(339, 90%, 68%)",
-  "background_color": "hsl(339, 90%, 68%)",
+  "theme_color": "rgb(251, 191, 183)",
+  "background_color": "rgb(251, 191, 183)",
   "icons": [{
     "src": "/images/icon_hu90f118b7b4deb78d768ec653efe3e71d_186801_192x192_fill_lanczos_center_2.png",
     "sizes": "192x192",

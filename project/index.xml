@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Chengsheng Wu</title>
-    <link>http://mia521.github.io/</link>
-      <atom:link href="http://mia521.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <description>Chengsheng Wu</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 28 Jun 2018 00:00:00 +0100</lastBuildDate>
+    <title>Projects | Chengsheng Wu</title>
+    <link>http://mia521.github.io/project/</link>
+      <atom:link href="http://mia521.github.io/project/index.xml" rel="self" type="application/rss+xml" />
+    <description>Projects</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 13 Mar 2020 22:55:13 -0700</lastBuildDate>
     <image>
       <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
-      <title>Chengsheng Wu</title>
-      <link>http://mia521.github.io/</link>
+      <title>Projects</title>
+      <link>http://mia521.github.io/project/</link>
     </image>
     
     <item>
@@ -830,24 +830,6 @@ point.&lt;/p&gt;
 &lt;p&gt;Create the &lt;code&gt;mailto_lbsq&lt;/code&gt; variable for sequential RFM &lt;strong&gt;adjusting for
 estimation accuracy&lt;/strong&gt; making sure to select the &lt;code&gt;rfm_sq&lt;/code&gt; variable so the
 estimates are generated for each cell.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Privacy Policy</title>
-      <link>http://mia521.github.io/privacy/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
-      <guid>http://mia521.github.io/privacy/</guid>
-      <description>&lt;p&gt;Add your privacy policy here and set &lt;code&gt;draft: false&lt;/code&gt; to publish it. Otherwise, delete this file if you don&amp;rsquo;t need it.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Terms</title>
-      <link>http://mia521.github.io/terms/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
-      <guid>http://mia521.github.io/terms/</guid>
-      <description>&lt;p&gt;Add your terms here and set &lt;code&gt;draft: false&lt;/code&gt; to publish it. Otherwise, delete this file if you don&amp;rsquo;t need it.&lt;/p&gt;
 </description>
     </item>
     
